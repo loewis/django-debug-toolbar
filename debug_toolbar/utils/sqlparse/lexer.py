@@ -209,8 +209,8 @@ class Lexer:
             if self.encoding == 'guess':
                 try:
                     text = text.decode('utf-8')
-                    if text.startswith(u'\ufeff'):
-                        text = text[len(u'\ufeff'):]
+                    if text.startswith(u('\ufeff')):
+                        text = text[len(u('\ufeff')):]
                 except UnicodeDecodeError:
                     text = text.decode('latin1')
             elif self.encoding == 'chardet':
@@ -297,7 +297,7 @@ class Lexer:
                         pos += 1
                         statestack = ['root']
                         statetokens = tokendefs['root']
-                        yield pos, Text, u'\n'
+                        yield pos, Text, u('\n')
                         continue
                     yield pos, Error, text[pos]
                     pos += 1

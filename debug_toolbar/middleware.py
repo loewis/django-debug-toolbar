@@ -3,6 +3,7 @@ Debug Toolbar middleware
 """
 import os
 
+from django.utils.py3 import u
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -39,7 +40,7 @@ class DebugToolbarMiddleware(object):
         self.show_toolbar = self._show_toolbar # default
 
         # The tag to attach the toolbar to
-        self.tag= u'</body>'
+        self.tag= u('</body>')
 
         if hasattr(settings, 'DEBUG_TOOLBAR_CONFIG'):
             show_toolbar_callback = settings.DEBUG_TOOLBAR_CONFIG.get(
@@ -49,7 +50,7 @@ class DebugToolbarMiddleware(object):
 
             tag = settings.DEBUG_TOOLBAR_CONFIG.get('TAG', None)
             if tag:
-                self.tag = u'</' + tag + u'>'
+                self.tag = u('</') + tag + u('>')
 
     def _show_toolbar(self, request):
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR', None)

@@ -43,7 +43,7 @@ class Token(object):
     def _get_repr_value(self):
         raw = unicode(self)
         if len(raw) > 7:
-            short = raw[:6]+u'...'
+            short = raw[:6]+u('...')
         else:
             short = raw
         return re.sub('\s+', ' ', short)
