@@ -1,7 +1,10 @@
 from datetime import datetime
 import os
 import sys
-import SocketServer
+try:
+    import SocketServer
+except ImportError:
+    import socketserver as SocketServer
 import traceback
 
 import django
