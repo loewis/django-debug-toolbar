@@ -30,7 +30,7 @@ ROOT_URLCONF = 'example.urls'
 SECRET_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcd'
 SITE_ID = 1
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
 )
