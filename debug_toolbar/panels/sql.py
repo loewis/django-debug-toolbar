@@ -17,6 +17,7 @@ except ImportError:
     connections = {'default': connection}
     connection.alias = 'default'
 
+from django.db import DEFAULT_DB_ALIAS
 from django.db.backends import util
 from django.views.debug import linebreak_iter
 from django.template import Node
@@ -243,7 +244,7 @@ class SQLDebugPanel(DebugPanel):
             self._queries.extend([(alias, q) for q in db_queries])
 
         self._queries.sort(key=lambda x: x[1]['start_time'])
-        self._sql_time = sum([d['time_spent'] for d in self._databases.itervalues()])
+        self._sql_time = sum([d['time_spent'] for d in self._databases.values()])
         num_queries = len(self._queries)
         # TODO l10n: use ngettext
         return "%d %s in %.2fms" % (
@@ -275,7 +276,7 @@ class SQLDebugPanel(DebugPanel):
             'databases': sorted(self._databases.items(), key=lambda x: -x[1]['time_spent']),
             'queries': [q for a, q in self._queries],
             'sql_time': self._sql_time,
-            'is_mysql': settings.DATABASE_ENGINE == 'mysql',
+            'is_mysql': settings.DATABASES[DEFAULT_DB_ALIAS]['ENGINE'] == 'mysql',
         })
 
         return render_to_string('debug_toolbar/panels/sql.html', context)

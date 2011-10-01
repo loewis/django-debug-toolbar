@@ -7,7 +7,7 @@ views in any other way is generally not advised.
 import os
 import django.views.static
 from django.conf import settings
-from django.db import connection
+from django.db import connection, DEFAULT_DB_ALIAS
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.utils import simplejson
@@ -78,7 +78,7 @@ def sql_explain(request):
         params = simplejson.loads(params)
         cursor = connection.cursor()
 
-        if settings.DATABASE_ENGINE == "sqlite3":
+        if settings.DATABASES[DEFAULT_DB_ALIAS]['ENGINE'] == "sqlite3":
             # SQLite's EXPLAIN dumps the low-level opcodes generated for a query;
             # EXPLAIN QUERY PLAN dumps a more human-readable summary
             # See http://www.sqlite.org/lang_explain.html for details
