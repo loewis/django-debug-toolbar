@@ -60,7 +60,7 @@ class SignalDebugPanel(DebugPanel):
 
     def content(self):
         signals = []
-        keys = self.signals.keys()
+        keys = list(self.signals.keys())
         keys.sort()
         for name in keys:
             signal = self.signals[name]
