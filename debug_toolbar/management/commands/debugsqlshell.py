@@ -12,8 +12,8 @@ class PrintQueryWrapper(util.CursorDebugWrapper):
             return self.cursor.execute(sql, params)
         finally:
             raw_sql = self.db.ops.last_executed_query(self.cursor, sql, params)
-            print sqlparse.format(raw_sql, reindent=True)
-            print
+            print(sqlparse.format(raw_sql, reindent=True))
+            print("")
 
 util.CursorDebugWrapper = PrintQueryWrapper
 
