@@ -2,8 +2,12 @@ import os
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 ADMIN_MEDIA_PREFIX = '/admin_media/'
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'example.db'
+DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME':   'example.db'
+            },
+}
 DEBUG = True
 INSTALLED_APPS = (
     'django.contrib.auth',
